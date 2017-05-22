@@ -1,0 +1,30 @@
+.axis text {
+    font-size: 12px;
+}
+
+.axis-label {
+    size: 12px;
+}
+
+.axis path {
+    fill: none;
+    stroke: #BBB;
+}
+
+#select {
+    overflow-y: scroll;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+circle,
+path {
+    pointer-events: none;
+}
+
+.hover-text {
+    text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white;
+}
