@@ -12,8 +12,10 @@ let stateMap = {
     "Connecticut": 9,
     "Delaware": 10,
     "District of Columbia": 11,
-    "Florida": 12, "Georgia": 13,
-    "Hawaii": 15, "Idaho": 16,
+    "Florida": 12,
+    "Georgia": 13,
+    "Hawaii": 15,
+    "Idaho": 16,
     "Illinois": 17,
     "Indiana": 18,
     "Iowa": 19,
@@ -54,10 +56,12 @@ let stateMap = {
     "Wyoming": 56,
 }
 
-$(function() {
+$(function () {
 
     function padInt(number) {
-        if (number<=9) { number = ("0"+number).slice(-4); }
+        if (number <= 9) {
+            number = ("0" + number).slice(-4);
+        }
         return number;
     }
 
@@ -76,7 +80,7 @@ $(function() {
 
     d3.queue()
         .defer(d3.json, "https://d3js.org/us-10m.v1.json")
-        .defer(d3.csv, "data/USmap.csv", function(d) {
+        .defer(d3.csv, "data/USmap.csv", function (d) {
 
             if (d["State or territory of residence"] in stateMap) {
                 map.set(padInt(stateMap[d["State or territory of residence"]]), parseInt(d[2006].replace(/,/g, "")))
@@ -87,14 +91,14 @@ $(function() {
     function ready(error, us) {
         let min = d3.min(map.values());
         let max = d3.max(map.values());
-        colorScale.domain(d3.range(min, max, ((max - min) /10))).range(d3.schemeRdYlGn[10]);
+        colorScale.domain(d3.range(min, max, ((max - min) / 10))).range(d3.schemeRdYlGn[10]);
 
         svg.append("g")
             .attr("class", "counties")
             .selectAll("path")
             .data(topojson.feature(us, us.objects.states).features)
             .enter().append("path")
-            .attr("fill", function(d) {
+            .attr("fill", function (d) {
                 return colorScale(d[2006] = map.get(d.id));
             })
             .attr("d", path);

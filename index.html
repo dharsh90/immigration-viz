@@ -15,7 +15,11 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/USmap.js"></script>
 
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -28,30 +32,30 @@
             <h1>Visualizing U.S. Immigration</h1>
         </div>
     </section>
-    
+
     <section>
         <div class="container">
             <h2>Why visualize immigration?</h2>
             <p>
-                We want this to be an exercise in tracing the history of an immigrant nation with data. This is the history of who the American people are and where they come from. 
+                We want this to be an exercise in tracing the history of an immigrant nation with data. This is the history of who the American people are and where they come from.
             </p>
-            
+
             <blockquote>
-                We are a country where people of all backgrounds, all nations of origin, all languages, all religions, all races, can make a home. America was built by immigrants. <br>
-                 - Hillary Clinton
+                We are a country where people of all backgrounds, all nations of origin, all languages, all religions, all races, can make a home. America was built by immigrants. <br> - Hillary Clinton
             </blockquote>
         </div>
     </section>
-    
+
     <section id="question-one">
         <div class="container">
             <h2>Which states in the U.S. attract the most incoming immigrants?</h2>
         </div>
+        <div id="vis" class="container"></div>
     </section>
-    
+
     <!-- Visualization -->
     <div id="vis" class="container"></div>
-    
+
     <footer>
         <div class="container">
             <p>Made by Nick Nordale, Jack Fox, Ishan Saksena, Iman Baghai and Matt McKenna </p>
