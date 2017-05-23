@@ -2,11 +2,11 @@
 library(dplyr)
 
 ## Read in data
-data_2 <- read.csv("./raw/fy2015_table2.csv", stringsAsFactors = FALSE)
-data_3 <- read.csv("./raw/fy2015_table3d.csv", stringsAsFactors = FALSE)
-data_4 <- read.csv("./raw/fy2015_table4.csv", stringsAsFactors = FALSE)
-data_11 <- read.csv("./raw/fy2015_table11d.csv", stringsAsFactors = FALSE)
-data_12 <- read.csv("./raw/fy2015_table12d.csv", stringsAsFactors = FALSE)
+data_2 <- read.csv("./raw/fy2015_table2.csv", stringsAsFactors = FALSE, check.names = FALSE)
+data_3 <- read.csv("./raw/fy2015_table3d.csv", stringsAsFactors = FALSE, check.names = FALSE)
+data_4 <- read.csv("./raw/fy2015_table4.csv", stringsAsFactors = FALSE, check.names = FALSE)
+data_11 <- read.csv("./raw/fy2015_table11d.csv", stringsAsFactors = FALSE, check.names = FALSE)
+data_12 <- read.csv("./raw/fy2015_table12d.csv", stringsAsFactors = FALSE, check.names = FALSE)
 
 # Rename first columns
 colnames(data_2)[1] <- "Country"
