@@ -71,7 +71,7 @@ $(function () {
     let map = d3.map();
     let path = d3.geoPath();
 
-    let svg = d3.select("#vis")
+    let svg = d3.select("#vis-us")
         .append("svg")
         .attr("width", width)
         .attr("height", height);
@@ -80,7 +80,7 @@ $(function () {
 
     d3.queue()
         .defer(d3.json, "https://d3js.org/us-10m.v1.json")
-        .defer(d3.csv, "data/USmap.csv", function (d) {
+        .defer(d3.csv, "./data/prep/USmap.csv", function (d) {
 
             if (d["State or territory of residence"] in stateMap) {
                 map.set(padInt(stateMap[d["State or territory of residence"]]), parseInt(d[2006].replace(/,/g, "")))

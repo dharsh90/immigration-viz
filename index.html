@@ -18,8 +18,9 @@
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
     <script src="https://d3js.org/topojson.v2.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/USmap.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/USmap.js"></script>
+    <script src="./js/Worldmap.js"></script>
 
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -50,11 +51,25 @@
         <div class="container">
             <h2>Which states in the U.S. attract the most incoming immigrants?</h2>
         </div>
-        <div id="vis" class="container"></div>
+         <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+		    <input  value = "2011" type="radio" name="options" id="option1" class= 'year' autocomplete="off" checked>Table 2
+		</label>
+            <label class="btn btn-primary">
+		    <input value = "2012" type="radio" name="options" id="option2" class= 'year' autocomplete="off">Table 3 
+		</label>
+            <label class="btn btn-primary">
+		    <input value = "2013"  type='radio' name="options" id="option3" class= 'year' autocomplete="off">Table 11
+		</label>
+            <label class="btn btn-primary">
+		    <input value = "2013"  type='radio' name="options" id="option3" class= 'year' autocomplete="off">Table 12
+		</label>
+        </div>
+        <div id="vis-world" class="container"></div>
     </section>
 
     <!-- Visualization -->
-    <div id="vis" class="container"></div>
+    <div id="vis-us" class="container"></div>
 
     <footer>
         <div class="container">
