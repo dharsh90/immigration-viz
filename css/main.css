@@ -131,3 +131,9 @@ footer p {
     display: inline-block;
     margin: 10px;
 }
+
+.countries {
+    fill: #d3d3d3;
+    stroke: #333;
+    stroke-width: 0.5
+}
