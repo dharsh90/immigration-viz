@@ -135,7 +135,8 @@ var LineChart = function () {
                 var overlay = g.append('rect')
                     .attr("class", "overlay")
                     .attr('width', drawWidth)
-                    .attr('height', drawHeight),
+                    .attr('height', drawHeight)
+                    .attr('fill', 'none'),
 
                     /* ********************************** Define scale and axis variables  ********************************** */
 
