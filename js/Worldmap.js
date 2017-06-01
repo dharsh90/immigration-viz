@@ -1,6 +1,6 @@
 // On-load
 $(function () {
-    // Set global variables (width, height, etc.)
+    /* ****** Graph Margins ****** */ 
     var width = 1200;
     var height = 600;
 
@@ -11,7 +11,11 @@ $(function () {
         left: 80
     };
 
-    // Create svg and g elements
+     // set default variables
+    file = "./data/prep/table_2.csv"
+    year = "2010"
+
+    /* ****** Append SVG and G ****** */ 
     var svg = d3.select("#vis-world")
         .append("svg")
         .attr('width', width)
@@ -22,20 +26,72 @@ $(function () {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    var path = d3.geoPath();
-    // Where everything happens
-    var x = d3.queue()
-        .defer(d3.json, "https://d3js.org/us-10m.v1.json")
-        .defer(d3.csv, "./data/prep/table_2.csv")
+    /* ****** Map projection ****** */ 
+    var projection = d3.geoMercator()
+        .scale(150)
+        .translate([width / 2, height / 1.5]);
     
-    console.log(x)
+    var path = d3.geoPath().projection(projection);
 
-    // Listen for button selection
+    /* ****** Collect topojson and filter data ****** */ 
+    var draw = function(file) {
+        // console.log(file)   
+        var immigration = d3.map();
+        d3.queue()
+            .defer(d3.json, "https://unpkg.com/world-atlas@1/world/110m.json")
+            .defer(d3.csv, file, function(d) {
+                if (+d["ISO3116"].length != 3) {
+                    d["ISO3116"] = d["ISO3116"].replace (/^/,'0');     
+                }
+                if (d[year] == 'NA') {
+                    d[year] = 0
+                }
+                immigration.set(d["ISO3116"], +d[year])
+            })
+            .await(ready)
+        
+        /* ****** Data bind ****** */ 
+        function ready(error, data) {
+            var countries = topojson.feature(data, data.objects.countries).features
+            var paths = g.selectAll("path").data(topojson.feature(data, data.objects.countries).features);
+            
+            paths.enter()
+                .append("path")
+                .attr("fill", "#d3d3d3")
+                .attr("stroke", "black")
+                .attr("stroke-width", 0.5)
+                .attr("d", path)
+                .attr("fill", function(d){ 
+                    var value = immigration.get(d.id)
+                    console.log(d)
+                    if (file.includes("_2") && value >= 1) {
+                        return 'yellow'
+                    } else {
+                        return '#d3d3d3'
+                    }
+                })
+
+
+
+        }
+    }
+
+    /* ****** Update map on selection ****** */ 
     $("input").on('change', function() {
+        var value = $(this).val();
+        var isTable  = $(this).hasClass('table')
+        var base = "./data/prep/"
+        var extension = ".csv"
+        // d3.csv(base.concat(value, extension))
+        if (isTable) file = base.concat(value, extension)
+        draw(file)
     });
+    draw(file)
 
 
 
 
 
 })
+
+// https://github.com/topojson/world-atlas

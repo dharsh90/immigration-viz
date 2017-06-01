@@ -8,6 +8,7 @@ data_4 <- read.csv("./raw/fy2015_table4.csv", stringsAsFactors = FALSE, check.na
 data_11 <- read.csv("./raw/fy2015_table11d.csv", stringsAsFactors = FALSE, check.names = FALSE)
 data_12 <- read.csv("./raw/fy2015_table12d.csv", stringsAsFactors = FALSE, check.names = FALSE)
 codes <- read.csv("./raw/country_codes.csv", stringsAsFactors = FALSE, check.names = FALSE)
+iso3 <- read.csv("./raw/iso3.csv", stringsAsFactors = FALSE, check.names = FALSE)
 
 
 # Rename first columns
@@ -62,12 +63,25 @@ data_4[ , 2:11] <- convert(data_4, 11)
 data_11[ , 2:8] <- convert(data_2, 8)
 data_12[ , 2:8] <- convert(data_2, 7)
 
-colnames(codes)[2] <- "Country"
-data_2 <- data_2 %>% merge(codes)
-data_3 <- data_3 %>% merge(codes)
-data_11 <- data_11 %>% merge(codes)
-data_12 <- data_12 %>% merge(codes)
+country.names <- function(df) {
+  old = c("Venezuela", "Bolivia", "Falkland Islands", "Bosnia", "Iran", "Vietnam", "Russia")
+  new = c("Venezuela, Bolivarian Republic of", "Bolivia, Plurinational State of", 
+          "Falkland Islands (Malvinas)", "Bosnia and Herzegovina", "Iran, Islamic Republic of",
+          "Viet Nam", "Russian Federation")
+  
+  new_country <- gsub(old, new, df$Country)
+  df$Country <- new_country
+  df <- df %>% merge(iso3) %>% merge(codes)
+  return(df)
+}
 
+colnames(iso3)[1] <- "ISO3"
+colnames(codes)[2] <- "Country"
+colnames(codes)[1] <- "ISO3116"
+data_2 <- country.names(data_2)
+data_3 <- country.names(data_3)
+data_11 <- country.names(data_11)
+data_12 <- country.names(data_12)
 
 
 write.csv(data_2, "./prep/table_2.csv")
