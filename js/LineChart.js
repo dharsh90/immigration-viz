@@ -14,7 +14,7 @@ $(function () {
         nestedData = []; //Dataset that has been nested using D3
 
     // Load data in using d3's csv function.
-    d3.csv('INSERT PATH TO DATA FILE HERE', function (error, data) {
+    d3.csv('./data/prep/table_2.csv', function (error, data) {
         // Put data into generic terms
         var prepData = function () {
             chartData = data.map(function (d) {
@@ -31,14 +31,14 @@ $(function () {
                     return d.key;
                 })
                 .entries(chartData);
-        };
 
+        };
         prepData();
 
         // Define function to draw ScatterPlot
-        var line = LineChart().selectedKeys(["DEFUALT KEYS"])
-            .xTitle("X-AXIS LABEL")
-            .yTitle("Y-AXIS LABEL");
+        var line = LineChart().selectedKeys(['Argentina']) //DEFAULT KEYS
+            .xTitle("Year")
+            .yTitle("# of Immigrants");
 
         // Function to make charts (doing a data-join to make charts)
         var draw = function () {
@@ -46,7 +46,7 @@ $(function () {
             prepData();
 
             // Create chart
-            var chart = d3.select("#vis")
+            var chart = d3.select("#LC_vis")
                 .datum(nestedData)
                 .call(line);
 
@@ -68,8 +68,8 @@ $(function () {
 
 var LineChart = function () {
     // Set default values
-    var height = 500, //Height of the chart
-        width = 960, //Width of the chart
+    var height = 600, //Height of the chart
+        width = 1060, //Width of the chart
         xScale = d3.scaleLinear(), //The type of scale used along the xaxis
         yScale = d3.scaleLinear(), //The type of scale used along the yaxis
         xTitle, //X-Axis label

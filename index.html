@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
     <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/LineChart.js"></script>
     <script src="./js/USmap.js"></script>
     <script src="./js/Worldmap.js"></script>
 
@@ -51,7 +52,7 @@
         <div class="container">
             <h2>Which states in the U.S. attract the most incoming immigrants?</h2>
         </div>
-         <div class="btn-group" data-toggle="buttons">
+        <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active">
 		    <input  value = "2011" type="radio" name="options" id="option1" class= 'year' autocomplete="off" checked>Table 2
 		</label>
@@ -67,6 +68,18 @@
         </div>
         <div id="vis-world" class="container"></div>
     </section>
+
+    <div class="container">
+        <div class="settings row text-center">
+            <div class="col-xs-6">
+                <h3>Select countries</h3>
+                <p>Hold <kbd>ctrl</kbd> or <kbd>cmd</kbd> to select multiple countries.</p>
+                <select name="select" id="select" class="form-control" size="5" multiple>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="LC_vis" class="container"></div>
 
     <!-- Visualization -->
     <div id="vis-us" class="container"></div>

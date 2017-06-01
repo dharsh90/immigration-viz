@@ -1,27 +1,22 @@
-
 body {
-    color: rgba(0,0,0,.9);
+    color: rgba(0, 0, 0, .9);
     font-size: 16px;
     line-height: 1.5;
-    font-family: -apple-system, BlinkMacSystemFont,
-                   'avenir next', avenir,
-                   helvetica, 'helvetica neue',
-                   ubuntu,
-                   roboto, noto,
-                   'segoe ui', arial,
-                   sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
     margin: 0px;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
     padding: 24px 0;
     margin: 0 auto;
 }
 
+
 /* Headers */
+
 h1 {
     font-size: 32px;
     color: white;
@@ -35,7 +30,9 @@ h3 {
     font-size: 20px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     line-height: 1.25;
 }
 
@@ -43,8 +40,12 @@ h3 {
     margin-bottom: 0;
 }
 
-h1, h2, h3, p {
-    max-width: 600px; /* Limit the line length to around 66 characters to improve readability */
+h1,
+h2,
+h3,
+p {
+    max-width: 600px;
+    /* Limit the line length to around 66 characters to improve readability */
     margin-left: auto;
     margin-right: auto;
 }
@@ -53,11 +54,15 @@ section {
     margin: 72px 0;
 }
 
-section h1, section h2, section h3 {
+section h1,
+section h2,
+section h3 {
     margin-top: 0;
 }
 
+
 /* Introduction */
+
 section#introduction {
     padding: 48px 0;
     background-color: #5e2ca5;
@@ -69,15 +74,17 @@ section#introduction h1 {
 }
 
 .considerations {
-    margin-top: 10px; 
+    margin-top: 10px;
 }
+
 
 /* Visualizations */
-#vis {
-    
-}
+
+#vis {}
+
 
 /* Footer */
+
 footer {
     padding: 36px 0;
     background-color: #eee;
@@ -118,7 +125,6 @@ footer p {
 
 #stateSettings {
     margin-left: auto;
-    
 }
 
 #axisSettings {
@@ -130,4 +136,8 @@ footer p {
 .control {
     display: inline-block;
     margin: 10px;
+}
+
+.axis {
+    font-size: 1em;
 }
