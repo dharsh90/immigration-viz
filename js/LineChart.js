@@ -14,7 +14,7 @@ $(function () {
         nestedData = []; //Dataset that has been nested using D3
 
     // Load data in using d3's csv function.
-    d3.csv('./data/prep/table_2.csv', function (error, data) {
+    d3.csv('./data/prep/mk_table_2.csv', function (error, data) {
         // Put data into generic terms
         var prepData = function () {
             chartData = data.map(function (d) {

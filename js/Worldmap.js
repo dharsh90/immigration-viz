@@ -50,8 +50,10 @@ $(function () {
             })
             .await(ready)
         
+        
         /* ****** Data bind ****** */ 
         function ready(error, data) {
+
             var countries = topojson.feature(data, data.objects.countries).features
             var paths = g.selectAll("path").data(topojson.feature(data, data.objects.countries).features);
             
@@ -63,16 +65,12 @@ $(function () {
                 .attr("d", path)
                 .attr("fill", function(d){ 
                     var value = immigration.get(d.id)
-                    console.log(d)
-                    if (file.includes("_2") && value >= 1) {
+                    if (value >= 1) {
                         return 'yellow'
                     } else {
                         return '#d3d3d3'
                     }
                 })
-
-
-
         }
     }
 
@@ -82,9 +80,8 @@ $(function () {
         var isTable  = $(this).hasClass('table')
         var base = "./data/prep/"
         var extension = ".csv"
-        // d3.csv(base.concat(value, extension))
         if (isTable) file = base.concat(value, extension)
-        draw(file)
+        draw(file, year)
     });
     draw(file, year)
 
