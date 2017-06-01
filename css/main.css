@@ -168,3 +168,21 @@ path {
 .hover-text {
     text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white;
 }
+
+/*Tree Map css*/
+
+.node {
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+  color:white;
+}
+
+
+#treemap {
+  position:relative;
+  padding-bottom:100px;
+}
