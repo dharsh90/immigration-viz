@@ -34,7 +34,7 @@ $(function () {
     var path = d3.geoPath().projection(projection);
 
     /* ****** Collect topojson and filter data ****** */ 
-    var draw = function(file) {
+    var draw = function(file, year) {
         // console.log(file)   
         var immigration = d3.map();
         d3.queue()
@@ -86,7 +86,7 @@ $(function () {
         if (isTable) file = base.concat(value, extension)
         draw(file)
     });
-    draw(file)
+    draw(file, year)
 
 
 
