@@ -1,3 +1,5 @@
+/* General */
+
 body {
     color: rgba(0, 0, 0, .9);
     font-size: 16px;
@@ -63,20 +65,55 @@ section h3 {
 
 /* Introduction */
 
+section {
+    margin-top: 0px
+}
+
 section#introduction {
-    padding: 48px 0;
+    padding: 0px;
     background-color: #5e2ca5;
+    width: 100%;
     margin: 0;
 }
 
-section#introduction h1 {
-    margin-bottom: 0;
+.jumbotron {
+    background-image: url("../images/jumbotron.jpg");
+    color: white;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
 }
 
 .considerations {
     margin-top: 10px;
 }
 
+/* Quote */
+
+blockquote {
+    width: 600px;
+    margin-left: auto; 
+    margin-right: auto;
+    font-style: italic;
+}
+
+blockquote:before {
+    content: "\201C";
+    color: #7a7a7a;
+}
+
+blockquote cite {
+    color: #999999;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+}
+ 
+blockquote cite:before {
+    content: "\2014 \2009";
+    margin: 0;
+}
 
 /* Visualizations */
 
@@ -167,4 +204,22 @@ path {
 
 .hover-text {
     text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white;
+}
+
+/*Tree Map css*/
+
+.node {
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+  color:white;
+}
+
+
+#treemap {
+  position:relative;
+  padding-bottom:100px;
 }

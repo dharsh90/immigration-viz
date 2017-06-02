@@ -43,7 +43,6 @@ $(function () {
         d3.queue()
             .defer(d3.json, "https://unpkg.com/world-atlas@1/world/110m.json")
             .defer(d3.csv, file, function(d) {
-                console.log(file)
                 if (+d["ISO3116"].length != 3) {
                     d["ISO3116"] = d["ISO3116"].replace (/^/,'0');     
                 }
@@ -63,19 +62,18 @@ $(function () {
             })
             .await(ready)
 
-
         function ready(error, data) {
             
             /* ****** TODO ****** */
             /* ****** Tooltip ****** */
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
+                .offset([-10, 0])
                 .html(function(d) {
-                    console.log(d)
+                  return "Hello World"  
                     // return d.university_name + "</br></br>" + 'World Rank: ' + d.world_rank;
                 })
-            svg.call(tip);
-
+            g.call(tip);
             /* ****** Create colorscale ****** */
             var color = d3.scaleThreshold()
                 .domain(d3.range(min, max, ((max - min) / 5)))
@@ -87,9 +85,12 @@ $(function () {
             
             paths.enter()
                 .append("path")
+                .on("mouseover", console.log("poop"))
+                // .on('mouseover', tip.show)
+                // .on('mouseout', tip.hide)  
                 .merge(paths)
                 .transition()
-                .duration(1500)
+                .duration(1100)
                 .attr("stroke", "black")
                 .attr("stroke-width", 0.5)
                 .attr("d", path)
@@ -101,10 +102,7 @@ $(function () {
                         return "#d3d3d3"
                     }
                 })
-                .on('mouseover', tip.show)
-                .on('mouseout', tip.hide);
-            
-            paths.exit().remove()
+            // paths.exit().remove()
 
         }
     }
