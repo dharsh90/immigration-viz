@@ -1,3 +1,5 @@
+/* General */
+
 body {
     color: rgba(0, 0, 0, .9);
     font-size: 16px;
@@ -87,6 +89,31 @@ section#introduction {
     margin-top: 10px;
 }
 
+/* Quote */
+
+blockquote {
+    width: 600px;
+    margin-left: auto; 
+    margin-right: auto;
+    font-style: italic;
+}
+
+blockquote:before {
+    content: "\201C";
+    color: #7a7a7a;
+}
+
+blockquote cite {
+    color: #999999;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+}
+ 
+blockquote cite:before {
+    content: "\2014 \2009";
+    margin: 0;
+}
 
 /* Visualizations */
 

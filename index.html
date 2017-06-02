@@ -23,7 +23,7 @@
     <script src="./js/USmap.js"></script>
     <script src="./js/Worldmap.js"></script>
     <script src="./js/treemap.js"></script>
-
+    
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -33,19 +33,18 @@
     <section id="introduction">
             <div class="col-md-12 jumbotron">
                 <h1>Visualizing U.S. Immigration</h1>
-            <p>
-                A deep dive into who the American people are and where they come from.
-                An exercise in tracing the history of an immigrant nation with data. 
-            </p>
+                <p>
+                    A deep dive into who the American people are and where they come from, this is 
+                    an exercise in tracing the history of an immigrant nation with data. 
+                </p>
             </div>
     </section>
 
     <section>
         <div class="container">
-            
-
             <blockquote>
-                We are a country where people of all backgrounds, all nations of origin, all languages, all religions, all races, can make a home. America was built by immigrants. <br> - Hillary Clinton
+                We are a country where people of all backgrounds, all nations of origin, all languages, all religions, all races, can make a home. America was built by immigrants.
+                <cite> Hillary Clinton </cite>
             </blockquote>
         </div>
     </section>
@@ -54,6 +53,8 @@
         <div class="container">
             <h2>Which states in the U.S. attract the most incoming immigrants?</h2>
         </div>
+        <div id="vis-us" class="container"></div>
+
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active">
 		    <input  value = "table_2" type="radio" name="options" id="option1" class= 'table' autocomplete="off" checked>Table 2
@@ -84,7 +85,6 @@
     <div id="LC_vis" class="container"></div>
 
     <!-- Visualization -->
-    <div id="vis-us" class="container"></div>
     <div id="treemap" class="container"></div>
 
     <footer>
