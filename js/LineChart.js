@@ -36,7 +36,7 @@ $(function () {
         prepData();
 
         // Define function to draw ScatterPlot
-        var line = LineChart().selectedKeys(['Argentina']) //DEFAULT KEYS
+        var line = LineChart().selectedKeys(['China']) //DEFAULT KEYS
             .xTitle("Year")
             .yTitle("# of Immigrants");
 
@@ -332,7 +332,7 @@ var LineChart = function () {
                         .attr('dx', 10)
                         .attr('dy', -10)
                         .text(function (d) {
-                            return d.key + " " + yScale(d.value) + "k";
+                            return d.key + " " + String(d.value).replace(/(.)(?=(\d{3})+$)/g, '$1,');
                         });
 
                     hover_text.exit().remove();
