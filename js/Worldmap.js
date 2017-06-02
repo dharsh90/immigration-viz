@@ -32,45 +32,80 @@ $(function () {
         .translate([width / 2, height / 1.5]);
     
     var path = d3.geoPath().projection(projection);
-
-    /* ****** Collect topojson and filter data ****** */ 
+    
     var draw = function(file, year) {
-        // console.log(file)   
+
         var immigration = d3.map();
+        var max = 0
+        var min = Number.MAX_SAFE_INTEGER
+
+        /* ****** Collect topojson and filter data ****** */
         d3.queue()
             .defer(d3.json, "https://unpkg.com/world-atlas@1/world/110m.json")
             .defer(d3.csv, file, function(d) {
+                console.log(file)
                 if (+d["ISO3116"].length != 3) {
                     d["ISO3116"] = d["ISO3116"].replace (/^/,'0');     
                 }
-                if (d[year] == 'NA') {
+                if(+d[year] < min) {
+                    min = +d[year]
+                } 
+                if (d[year] == 'NA' || d[year] == " - ") {
                     d[year] = 0
                 }
+                if(+d[year] > max) {
+                    max = +d[year]
+                }
+                if(+d[year] > 0 && +d[year] < min) {
+                    min = +d[year]
+                } 
                 immigration.set(d["ISO3116"], +d[year])
             })
             .await(ready)
-        
-        
-        /* ****** Data bind ****** */ 
-        function ready(error, data) {
 
+
+        function ready(error, data) {
+            
+            /* ****** TODO ****** */
+            /* ****** Tooltip ****** */
+            var tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .html(function(d) {
+                    console.log(d)
+                    // return d.university_name + "</br></br>" + 'World Rank: ' + d.world_rank;
+                })
+            svg.call(tip);
+
+            /* ****** Create colorscale ****** */
+            var color = d3.scaleThreshold()
+                .domain(d3.range(min, max, ((max - min) / 5)))
+                .range(d3.schemeRdBu[5]);
+
+            /* ****** Data bind ****** */ 
             var countries = topojson.feature(data, data.objects.countries).features
             var paths = g.selectAll("path").data(topojson.feature(data, data.objects.countries).features);
             
             paths.enter()
                 .append("path")
-                .attr("fill", "#d3d3d3")
+                .merge(paths)
+                .transition()
+                .duration(1500)
                 .attr("stroke", "black")
                 .attr("stroke-width", 0.5)
                 .attr("d", path)
                 .attr("fill", function(d){ 
                     var value = immigration.get(d.id)
-                    if (value >= 1) {
-                        return 'yellow'
+                    if (value > 1) {
+                        return color(immigration.get(d.id));
                     } else {
-                        return '#d3d3d3'
+                        return "#d3d3d3"
                     }
                 })
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
+            
+            paths.exit().remove()
+
         }
     }
 
@@ -84,6 +119,12 @@ $(function () {
         draw(file, year)
     });
     draw(file, year)
+    
+    /* ****** Tool tip selector ****** */ 
+    // $(".my_circle").tooltip({
+    //     'container': 'body',
+    //     'placement': 'top'
+    // });
 
 
 
