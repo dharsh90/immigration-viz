@@ -14,7 +14,7 @@ var treemap = function () {
         height = 500,
         drawWidth = width - margin.left - margin.right,
         drawHeight = height - margin.top - margin.bottom,
-        measure = 'fertility_rate'; // variable to visualize
+        measure = 'Total'; // variable to visualize
 
     // Function returned by treemap
     var chart = function (nestedData) {
@@ -69,7 +69,7 @@ var treemap = function () {
         nodes.enter()
             .append("div")
             .text(function (d) {
-                return d.data.country_code;
+                return d.data.ISO3;
             })
             .merge(nodes)
             .attr('class', 'node')
@@ -87,7 +87,7 @@ var treemap = function () {
                 return d.y1 - d.y0 + "px";
             })
             .style("background", function (d, i) {
-                return colorScale(d.data.region);
+                return colorScale(d.data.Continent);
             });
     };
 
@@ -118,12 +118,13 @@ var treemap = function () {
 // Render treemap
 $(function () {
     // Prep data
-    d3.csv('data/treedata.csv', function (error, data) {
+    //d3.csv('data/treedata.csv', function (error, data) {
+    d3.csv('data/prep/table_11region.csv', function (error, data) {
         var tree = treemap().width(960).height(500);
         // Nest your data *by region* using d3.nest()
         var nestedData = d3.nest()
             .key(function (d) {
-                return d.region;
+                return d.Continent;
             })
             .entries(data);
 
