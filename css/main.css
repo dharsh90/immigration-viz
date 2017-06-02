@@ -1,7 +1,7 @@
 /* General */
 
 body {
-    color: rgba(0, 0, 0, .9);
+
     font-size: 16px;
     line-height: 1.5;
     font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
@@ -207,7 +207,6 @@ path {
 }
 
 /*Tree Map css*/
-
 .node {
   border: solid 1px white;
   font: 10px sans-serif;
@@ -218,8 +217,28 @@ path {
   color:white;
 }
 
-
 #treemap {
   position:relative;
   padding-bottom:100px;
 }
+
+/* US Map CSS */
+#svg-filter {
+    padding: 0;
+}
+
+.axis--grid .domain {
+    fill: #ddd;
+    stroke: none;
+}
+
+.axis--x .domain,
+.axis--grid .tick line {
+    stroke: #fff;
+}
+
+.axis--grid .tick--minor line {
+    stroke-opacity: .5;
+}
+/* END US Map CSS */
+
