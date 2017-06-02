@@ -6,9 +6,9 @@ $(function () {
 
     var margin = {
         top: 10,
-        right: 120,
+        right: 20,
         bottom: 50,
-        left: 80
+        left: 20
     };
 
      // set default variables
