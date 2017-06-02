@@ -63,14 +63,24 @@ section h3 {
 
 /* Introduction */
 
+section {
+    margin-top: 0px
+}
+
 section#introduction {
-    padding: 48px 0;
+    padding: 0px;
     background-color: #5e2ca5;
+    width: 100%;
     margin: 0;
 }
 
-section#introduction h1 {
-    margin-bottom: 0;
+.jumbotron {
+    background-image: url("../images/jumbotron.jpg");
+    color: white;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
 }
 
 .considerations {
