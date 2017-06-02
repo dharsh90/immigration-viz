@@ -79,6 +79,7 @@
 
     <!-- World Map -->
     <section>
+        <h2>Where do immigrants come from?</h2>
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active">
 		    <input  value = "table_2" type="radio" name="options" id="option1" class= 'table' autocomplete="off" checked>Table 2
@@ -105,19 +106,57 @@
         <div id="LC_vis" class="container"></div>
     </section>
 
+    <!-- Treemap -->
+    <section>
+        <div class="container">
+            <h2>Why do immigrants come to the US?</h2>
+
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                    <input  value = "Total" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    Total
+                </label>
+                <label class="btn btn-primary active">
+                    <input  value = "Family-sponsored preferences" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    Family
+                </label>
+
+                <label class="btn btn-primary active">
+                    <input  value = "Employment-based preferences" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    Employment
+                </label>
+
+                <label class="btn btn-primary active">
+                    <input  value = "Immediate relatives of U.S. citizens" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    Immediate relatives of U.S. citizens
+                </label>
+                <label class="btn btn-primary active">
+                    <input  value = "Diversity" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    Diversity
+                </label>
+
+                <label class="btn btn-primary active">
+                    <input  value = "Refugees and asylees" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    Refugees and asylees
+                </label>
+
+                <label class="btn btn-primary active">
+                    <input  value = "Other" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    Other
+                </label>
+            </div>
+
+            <div id="treemap" class="container"></div>
+        </div>
+    </section>
+
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <p>Made by Nick Nordale, Jack Fox, Ishan Saksena, Iman Baghai and Matt McKenna </p>
         </div>
     </footer>
-
-    <!-- Treemap -->
-    <section>
-        <div class="container">
-            <div id="treemap" class="container"></div>
-        </div>
-    </section>
 </body>
 
 </html>`
