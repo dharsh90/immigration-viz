@@ -196,6 +196,12 @@ path {
     padding: 0;
 }
 
+.btn_group {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
 .axis--grid .domain {
     fill: #ddd;
     stroke: none;

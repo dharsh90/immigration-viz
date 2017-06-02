@@ -10,8 +10,8 @@ var treemap = function () {
         bottom: 10,
         left: 10
     },
-        width = 960,
-        height = 500,
+        width = 1200,
+        height = 700,
         drawWidth = width - margin.left - margin.right,
         drawHeight = height - margin.top - margin.bottom,
         measure = 'Total'; // variable to visualize
@@ -120,7 +120,7 @@ $(function () {
     // Prep data
     //d3.csv('data/treedata.csv', function (error, data) {
     d3.csv('data/prep/table_11region.csv', function (error, data) {
-        var tree = treemap().width(960).height(500);
+        var tree = treemap();
         // Nest your data *by region* using d3.nest()
         var nestedData = d3.nest()
             .key(function (d) {
@@ -129,5 +129,16 @@ $(function () {
             .entries(data);
 
         tree(nestedData);
+
+
+        $('#why label').click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+
+        $("#why :input").change(function () {
+            d3.selectAll(".node").remove();
+            tree.measure($(this).val());
+            tree(nestedData);
+        });
     });
 });
