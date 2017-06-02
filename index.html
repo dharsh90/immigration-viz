@@ -20,7 +20,7 @@
     <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
     <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
-    
+
     <!-- Scripts -->
     <script src="./js/main.js"></script>
     <script src="./js/LineChart.js"></script>
@@ -34,33 +34,51 @@
 </head>
 
 <body>
+    <!-- Opening HTML -->
     <section id="introduction">
-            <div class="col-md-12 jumbotron">
-                <h1>Visualizing U.S. Immigration</h1>
-                <p>
-                    A deep dive into who the American people are and where they come from, this is 
-                    an exercise in tracing the history of an immigrant nation with data. 
-                </p>
-            </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <blockquote>
-                We are a country where people of all backgrounds, all nations of origin, all languages, all religions, all races, can make a home. America was built by immigrants.
-                <cite> Hillary Clinton </cite>
-            </blockquote>
+        <div class="col-md-12 jumbotron">
+            <h1>Visualizing U.S. Immigration</h1>
+            <p>
+                A deep dive into who the American people are and where they come from, this is an exercise in tracing the history of an immigrant
+                nation with data.
+            </p>
         </div>
     </section>
 
-    <section id="question-one">
+    <!-- Introductory Text -->
+    <section>
+        <div class="container">
+            <h2>Introduction</h2>
+            <p>
+                The problem this project undertakes is the lack of mainstream understanding of U.S. immigration patterns over time. Since
+                U.S. immigration policy has become a hot topic over the past year, most of the conversation revolved around
+                the importance of the narrative that the U.S as a “nation of immigrants” and continue on a line of argumentation
+                to uphold said narrative. However, there is a little discussion about the history of how immigrants came
+                to the United States, a discussion on how, from where, and why immigrants came to the United States when
+                they did. Also lacking from the discussion is a historical understanding of how United States legislative
+                efforts have shaped and affected who came to the United States at various points in its history.
+            </p>
+            <p>
+                This project aims to solve that by showing where immigrants have come to the United States over time from a global perspective,
+                individually by country, as well as where they have settled in the United States more recently. This is done
+                to get a larger historical perspective, a global perspective as to where immigrants are coming from, and
+                a more recent perspective of where people are settling in the United States.
+            </p>
+        </div>
+    </section>
+
+    <!-- US map -->
+    <section>
         <div class="container">
             <h2>Which states in the U.S. attract the most incoming immigrants?</h2>
         </div>
         <div id="vis-us" class="container">
             <svg id="svg-filter"></svg>
         </div>
+    </section>
 
+    <!-- World Map -->
+    <section>
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active">
 		    <input  value = "table_2" type="radio" name="options" id="option1" class= 'table' autocomplete="off" checked>Table 2
@@ -72,27 +90,34 @@
         <div id="vis-world" class="container"></div>
     </section>
 
-    <div class="container">
-        <div class="settings row text-center">
-            <div class="col-xs-6">
-                <h3>Select countries</h3>
-                <p>Hold <kbd>ctrl</kbd> or <kbd>cmd</kbd> to select multiple countries.</p>
-                <select name="select" id="select" class="form-control" size="5" multiple>
+    <!-- Line chart -->
+    <section>
+        <div class="container">
+            <div class="settings row text-center">
+                <div class="col-xs-6">
+                    <h3>Select countries</h3>
+                    <p>Hold <kbd>ctrl</kbd> or <kbd>cmd</kbd> to select multiple countries.</p>
+                    <select name="select" id="select" class="form-control" size="5" multiple>
                 </select>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="LC_vis" class="container"></div>
+        <div id="LC_vis" class="container"></div>
+    </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>Made by Nick Nordale, Jack Fox, Ishan Saksena, Iman Baghai and Matt McKenna </p>
         </div>
     </footer>
 
-    <div id="treemap" class="container"></div>
-
-
+    <!-- Treemap -->
+    <section>
+        <div class="container">
+            <div id="treemap" class="container"></div>
+        </div>
+    </section>
 </body>
 
 </html>`
