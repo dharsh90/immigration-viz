@@ -240,6 +240,14 @@ path {
 .handle--custom {
     pointer-events: all;
 }
+
+#us-map-btn-container {
+    padding: 0;
+}
+
+#vis-us {
+    padding-top: 10px;
+}
 /* END US Map CSS */
 
 #slider label {
