@@ -51,14 +51,12 @@ $(function () {
         .attr('id', 'map')        
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
     /* ****** Map projection ****** */ 
     var projection = d3.geoMercator()
         .scale(150)
         .translate([width / 2, height / 1.5]);
     
     var path = d3.geoPath().projection(projection);
-
 
     /* ****** Slider ****** */
     $("#slider").slider({
@@ -68,30 +66,18 @@ $(function () {
         step: 1
     })
     .each(function() {
-        // Add labels to slider whose values 
-        // are specified by min, max
-
-        // Get the options for this slider (specified above)
         var opt = $(this).data().uiSlider.options;
-
-        // Get the number of possible values
         var vals = opt.max - opt.min;
 
-        // Position the labels
         for (var i = 1; i <= vals; i++) {
-
-        // Create a new element and position it with percentages
-        var el = $('<label id = "tick-label">' + years[i] + '</label>').css('left', (i / vals * 100) + '%');
-        
-
-        // Add the element inside #slider
-        $("#slider").append(el);
-
+            var el = $('<label id = "tick-label">' + years[i] + '</label>').css('left', (i / vals * 100) + '%');
+            $("#slider").append(el);
         }
     });
     var val = $('#slider').slider("option", "value");
     console.log(val)
     
+    /* ****** Draw on Update ****** */
     var draw = function(year) {
 
         var immigration = d3.map();
@@ -188,17 +174,6 @@ $(function () {
         draw(year)
     });
     draw(year)
-    
-    /* ****** Tool tip selector ****** */ 
-    // $(".my_circle").tooltip({
-    //     'container': 'body',
-    //     'placement': 'top'
-    // });
-
-
-
-
-
 })
 
 // https://github.com/topojson/world-atlas
