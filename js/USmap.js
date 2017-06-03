@@ -95,12 +95,17 @@ $(function () {
         .attr("width", filterwidth + margin.left + margin.right)
         .attr("height", filterheight);
 
-    svgfilter.append("g")
+    var filterGrid = svgfilter.append("g")
         .attr("class", "axis axis--grid")
         .attr("transform", "translate(0," + filterheight + ")")
         .call(d3.axisBottom().scale(xScale).tickSize(-filterheight).tickFormat(function() { return null; }));
 
     let xWidth = xScale(yeardomain[1]) - xScale(yeardomain[0]);
+
+    var brush = d3.brushX()
+        .extent([[0, 0], [filterwidth, filterheight]])
+        .on("start brush", updateBrush)
+        .on("end", brushed);
 
     svgfilter.append("g")
         .attr("class", "axis axis--x")
@@ -112,16 +117,42 @@ $(function () {
             .attr("y", (filterheight / 2) - 2)
             .style("text-anchor", "middle");
 
-    svgfilter.append("g")
+    var currCols = [2009, 2010, 2011, 2012];
+
+    var gBrush = svgfilter.append("g")
         .attr("class", "brush")
-        .call(d3.brushX()
-            .extent([[0, 0], [filterwidth, filterheight]])
-            .on("end", brushed))
-        .call(d3.brushX().move, [2009, 2013].map(xScale));
+        .call(brush);
+
+    var handle = gBrush.selectAll(".handle--custom")
+        .data([{type: "w"}, {type: "e"}])
+        .enter().append("path")
+        .attr("class", "handle--custom")
+        .attr("fill", "#666")
+        .attr("fill-opacity", 0.8)
+        .attr("stroke", "#000")
+        .attr("stroke-width", 1.5)
+        .attr("cursor", "ew-resize")
+        .attr("d", d3.arc()
+            .innerRadius(0)
+            .outerRadius(filterheight / 2)
+            .startAngle(0)
+            .endAngle(function(d, i) { return i ? Math.PI : -Math.PI; }));
+
+    function updateBrush() {
+        var s = d3.event.selection;
+        if (s == null) {
+            handle.attr("display", "none");
+        } else {
+            var sx = s.map(xScale.invert);
+            handle.attr("display", null).attr("transform", function(d, i) { return "translate(" + s[i] + "," + filterheight / 2 + ")"; });
+        }
+    }
 
     function brushed() {
         if (!d3.event.sourceEvent) return;
-        if (!d3.event.selection) return;
+        if (!d3.event.selection) {
+
+        }
         let d0 = d3.event.selection.map(xScale.invert),
             d1 = d0.map(Math.round);
 
@@ -130,11 +161,16 @@ $(function () {
             d1[1] = d1[0] + 1;
         }
 
+        console.log(d1.map(xScale));
+
         d3.select(this).transition().call(d3.event.target.move, d1.map(xScale));
         drawData([...Array(d1[1] - d1[0]).keys()].map(x => x + d1[0]))
+
+        handle.attr("display", null).attr("transform", function(d, i) { return "translate(" + d0[i] + "," + filterheight / 2 + ")"; });
     }
 
     function drawData(cols) {
+        currCols = cols;
         d3.queue()
             .defer(d3.json, "https://d3js.org/us-10m.v1.json")
             .defer(d3.csv, "./data/prep/USmap.csv", function (d) {
@@ -175,5 +211,6 @@ $(function () {
             .call(legend);
     }
 
-    drawData([2009, 2010, 2011, 2012]);
+    gBrush.call(brush.move, [2009, 2013].map(xScale));
+    drawData(currCols);
 });
