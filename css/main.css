@@ -249,6 +249,12 @@ path {
 #vis-us {
     padding-top: 10px;
 }
+
+.states {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+}
 /* END US Map CSS */
 
 #slider label {
