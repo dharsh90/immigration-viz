@@ -119,7 +119,7 @@ var treemap = function () {
                 w = d.x1 - d.x0;
                 h = d.y1 - d.y0;
                 area = w * h;
-                if (area > 2000 && w > 10 && h > 10) {
+                if (area > 2000 && w > 30 && h > 30) {
                     return d.data.ISO3;
                 } else {
                     return ""
