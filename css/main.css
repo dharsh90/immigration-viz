@@ -213,5 +213,9 @@ path {
 .axis--grid .tick--minor line {
     stroke-opacity: .5;
 }
+
+.handle--custom {
+    pointer-events: all;
+}
 /* END US Map CSS */
 
