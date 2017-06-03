@@ -68,7 +68,10 @@ $(function () {
     let width = 1200,
         height = 600;
 
+    var standardizeData = false;
+
     let map = d3.map();
+    let popMap = d3.map();
     let path = d3.geoPath();
 
     let svg = d3.select("#vis-us")
@@ -76,8 +79,6 @@ $(function () {
         .attr("width", width)
         .attr("height", height)
         .attr("transform", "translate(0,0)");
-
-    let colorScale = d3.scaleLog();
 
     let yeardomain = [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
 
@@ -95,14 +96,14 @@ $(function () {
         .attr("width", filterwidth + margin.left + margin.right)
         .attr("height", filterheight);
 
-    var filterGrid = svgfilter.append("g")
+    let filterGrid = svgfilter.append("g")
         .attr("class", "axis axis--grid")
         .attr("transform", "translate(0," + filterheight + ")")
         .call(d3.axisBottom().scale(xScale).tickSize(-filterheight).tickFormat(function() { return null; }));
 
     let xWidth = xScale(yeardomain[1]) - xScale(yeardomain[0]);
 
-    var brush = d3.brushX()
+    let brush = d3.brushX()
         .extent([[0, 0], [filterwidth, filterheight]])
         .on("start brush", updateBrush)
         .on("end", brushed);
@@ -117,13 +118,13 @@ $(function () {
             .attr("y", (filterheight / 2) - 2)
             .style("text-anchor", "middle");
 
-    var currCols = [2009, 2010, 2011, 2012];
+    let currCols = [2009, 2010, 2011, 2012];
 
-    var gBrush = svgfilter.append("g")
+    let gBrush = svgfilter.append("g")
         .attr("class", "brush")
         .call(brush);
 
-    var handle = gBrush.selectAll(".handle--custom")
+    let handle = gBrush.selectAll(".handle--custom")
         .data([{type: "w"}, {type: "e"}])
         .enter().append("path")
         .attr("class", "handle--custom")
@@ -139,11 +140,11 @@ $(function () {
             .endAngle(function(d, i) { return i ? Math.PI : -Math.PI; }));
 
     function updateBrush() {
-        var s = d3.event.selection;
-        if (s == null) {
+        let s = d3.event.selection;
+        if (s === null) {
             handle.attr("display", "none");
         } else {
-            var sx = s.map(xScale.invert);
+            let sx = s.map(xScale.invert);
             handle.attr("display", null).attr("transform", function(d, i) { return "translate(" + s[i] + "," + filterheight / 2 + ")"; });
         }
     }
@@ -164,28 +165,45 @@ $(function () {
         console.log(d1.map(xScale));
 
         d3.select(this).transition().call(d3.event.target.move, d1.map(xScale));
-        drawData([...Array(d1[1] - d1[0]).keys()].map(x => x + d1[0]))
+        drawData([...Array(d1[1] - d1[0]).keys()].map(x => x + d1[0]), standardizeData);
 
         handle.attr("display", null).attr("transform", function(d, i) { return "translate(" + d0[i] + "," + filterheight / 2 + ")"; });
     }
 
-    function drawData(cols) {
+    function drawData(cols, norm) {
         currCols = cols;
         d3.queue()
             .defer(d3.json, "https://d3js.org/us-10m.v1.json")
-            .defer(d3.csv, "./data/prep/USmap.csv", function (d) {
+            .defer(d3.csv, "data/state_pop_2006_2015.csv", function(d) {
+                if (norm) {
+                    if (d["State"] in stateMap) {
+                        popMap.set(padInt(stateMap[d["State"]]), parseInt(d[d3.max(cols)]))
+                    }
+                }
+            })
+            .defer(d3.csv, "./data/prep/USmap.csv", function(d) {
 
                 if (d["State or territory of residence"] in stateMap) {
-                    map.set(padInt(stateMap[d["State or territory of residence"]]), cols.map(x => parseInt(d[x].replace(/,/g, ""))).reduce((a, b) => a + b, 0))
+                    map.set(padInt(stateMap[d["State or territory of residence"]]),
+                        cols.map(x => parseInt(d[x].replace(/,/g, ""))).reduce((a, b) => a + b, 0))
                 }
             })
             .await(ready);
     }
 
     function ready(error, us) {
+        if (!popMap.empty()) {
+            map.entries().map(function(obj) {
+                map.set(obj.key, (obj.value / (popMap.get(obj.key) * 1.0)));
+            });
+        }
+
+        popMap.clear();
+
         let min = d3.min(map.values());
         let max = d3.max(map.values());
-        colorScale.domain(d3.range(min, max, ((max - min) / 10))).range(d3.schemeRdYlGn[10]);
+
+        let colorScale = d3.scaleQuantile().domain([ min, max ]).range(d3.schemeRdYlGn[10]);
 
         svg.append("g")
             .attr("class", "counties")
@@ -193,7 +211,7 @@ $(function () {
             .data(topojson.feature(us, us.objects.states).features)
             .enter().append("path")
             .attr("fill", function (d) {
-                return colorScale(d[2006] = map.get(d.id));
+                return colorScale(map.get(d.id))
             })
             .attr("d", path);
 
@@ -201,10 +219,13 @@ $(function () {
             .attr("class", "legendQuant")
             .attr("transform", "translate(1000,100)");
 
+        var legendTitle = standardizeData ? "Total Persons Obtaining Lawful Permanent Resident / State Population" : "Total Persons Obtaining Lawful Permanent Resident";
+        var legendLabelFormat = standardizeData ? d3.format("p") : d3.format(".1s");
+
         let legend = d3.legendColor()
-            .title("# Persons Obtaining Lawful Permanent Resident")
-            .labelFormat(d3.format(".0f"))
-            .labels(d3.legendHelpers.thresholdLabels)
+            .title(legendTitle)
+            .titleWidth(200)
+            .labelFormat(legendLabelFormat)
             .scale(colorScale);
 
         svg.select(".legendQuant")
@@ -212,5 +233,16 @@ $(function () {
     }
 
     gBrush.call(brush.move, [2009, 2013].map(xScale));
-    drawData(currCols);
+    drawData(currCols, standardizeData);
+
+    $("#us-map-buttons button").click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        if ($(this).val() === "raw") {
+            standardizeData = false;
+            drawData(currCols, standardizeData);
+        } else if ($(this).val() === "standard") {
+            standardizeData = true;
+            drawData(currCols, standardizeData);
+        }
+    });
 });
