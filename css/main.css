@@ -254,11 +254,12 @@ path {
   position: absolute;
   width: 20px;
   margin-top: 23px;
-  margin-left: -33px; 
-  text-align: center;
-  transform: rotate(-45deg);
+  margin-left: -35px; 
+  text-align: left;
+  /*transform: rotate(-45deg);*/
+  font-size: 11px;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 12;
+  
 
 }
 

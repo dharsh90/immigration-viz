@@ -149,35 +149,6 @@ $(function () {
                     }
                 })
             // paths.exit().remove()
-            
-            /* ****** Text ****** */
-
-            var header = d3.select("#vis-world")
-                .append("text")
-
-            var headers = header.selectAll("text").data()
-
-            headers.enter()
-                .append("text")
-                .merge(headers)
-                .transition()
-                .duration(800)
-                .attr("class", "year_header" )
-                .attr("x", (width / 2))             
-                .attr("y", 0 - (margin.top / 2))
-                .attr("text-anchor", "middle")  
-                .style("font-size", "16px") 
-                .text(year)
-            
-            headers.exit().remove()
-
-            // d3.select("#vis-world").append("text")
-            //     .attr("class", "year_header" )
-            //     .attr("x", (width / 2))             
-            //     .attr("y", 0 - (margin.top / 2))
-            //     .attr("text-anchor", "middle")  
-            //     .style("font-size", "16px") 
-            //     .text(year)
 
             /* ****** Legend ****** */ 
              svg.append("g")
