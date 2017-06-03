@@ -191,15 +191,16 @@ path {
   padding-bottom:100px;
 }
 
+#tree {
+    margin-bottom: 600px;
+}
+
+.btn-group {
+    margin-bottom: 20px;
+}
 /* US Map CSS */
 #svg-filter {
     padding: 0;
-}
-
-.btn_group {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
 }
 
 .axis--grid .domain {

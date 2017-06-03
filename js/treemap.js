@@ -73,7 +73,7 @@ var treemap = function () {
             })
             .merge(nodes)
             .attr('class', 'node')
-            .transition().duration(1500)
+            //.transition().duration(1500)
             .style("left", function (d, i) {
                 return d.x0 + "px";
             })
