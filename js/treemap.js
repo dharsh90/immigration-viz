@@ -37,6 +37,7 @@ var treemap = function () {
         // Append a wrapper div for the chart
         var div = d3.select('#treemap')
             .append("svg")
+            .attr('id', 'treemap-svg')
             .attr('height', drawHeight)
             .attr('width', drawWidth)
             .style("left", margin.left + "px")
@@ -174,7 +175,7 @@ $(function () {
         });
 
         $("#why :input").change(function () {
-            d3.selectAll("svg").remove();
+            d3.selectAll("#treemap-svg").remove();
             tree.measure($(this).val());
             tree(nestedData);
         });
