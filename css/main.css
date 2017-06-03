@@ -89,14 +89,22 @@ section#introduction {
     margin-top: 10px;
 }
 
-.china-image {
+#china-image-1 {
     display: inline-block;
     max-width:600px;
     max-height:800px;
     width: auto;
     height: auto;
-    margin-left: 80px;
-    margin-bottom: 20px;
+    margin-top: 42px;
+    margin-bottom: 42px;
+}
+
+#china-image-2 {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 42px;
+    margin-top: 42px;
 }
 
 /* Footer */
