@@ -20,6 +20,9 @@
     <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
     <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 
     <!-- Scripts -->
     <script src="./js/main.js"></script>
@@ -80,14 +83,9 @@
     <!-- World Map -->
     <section>
         <h2>Where do immigrants come from?</h2>
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary active">
-		    <input  value = "table_2" type="radio" name="options" id="option1" class= 'table' autocomplete="off" checked>Table 2
-		</label>
-            <label class="btn btn-primary">
-		    <input value = "table_3" type="radio" name="options" id="option2" class= 'table' autocomplete="off">Table 3 
-		</label>
-        </div>
+        <div class="container">
+            <div id="slider"></div>
+        </div>   
         <div id="vis-world" class="container"></div>
     </section>
 
