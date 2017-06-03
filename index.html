@@ -74,6 +74,12 @@
     <section>
         <div class="container">
             <h2>Which states in the U.S. attract the most incoming immigrants?</h2>
+
+            <p>
+                This visualization allows the user to select a range of years over the past decade and see how the state’s compare to one
+                another in terms of the amount of new immigrants. The sliders will allow you to choose any year range between
+                2008-2015.
+            </p>
         </div>
         <div id="vis-us" class="container">
             <svg id="svg-filter"></svg>
@@ -82,10 +88,14 @@
 
     <!-- World Map -->
     <section>
-        <h2>Where do immigrants come from?</h2>
         <div class="container">
+            <h2>Where do immigrants come from?</h2>
+            <p>
+                This map shows a choropleth of where immigrants over time are coming to the US. This is so the user can quickly get an idea
+                of where immigrants are coming to the US from around the world in a quick snapshot.
+            </p>
             <div id="slider"></div>
-        </div>   
+        </div>
         <div id="vis-world" class="container"></div>
     </section>
 
@@ -102,8 +112,6 @@
 
             </p>
 
-
-
             <p>
                 Despite efforts for equal treatments many labor unions rallied against Chinese immigration leading to Page Act of 1875 aimed
                 to limit Chinese immigrants and reinofrced a stigma that the Chinese are "dishonest". The Page Act also responded
@@ -116,27 +124,38 @@
                 the U.S. and China.
             </p>
 
-            <image class="china-image" src="images/china1.jpg">
-                <image class="china-image" src="images/china2.jpg">
+            <image class="china-image" src="images/china1.jpg" />
+            <image class="china-image" src="images/china2.jpg" />
 
-                    <div class="container">
-                        <div class="settings row text-center">
-                            <div class="col-xs-6">
-                                <h3>Select countries</h3>
-                                <p>Hold <kbd>ctrl</kbd> or <kbd>cmd</kbd> to select multiple countries.</p>
-                                <select name="select" id="select" class="form-control" size="5" multiple>
+            <div class="container">
+                <p>
+                     Outside of the case study you can use this tool to select a country or multiple countries to compare and see when and in
+                    what numbers immigrants from the selected countries are coming to the USA. This provides a nice easy
+                    way to investigate trend and a starting place to then dig into either what may have caused a dip or spike
+                    in immigration from a certain country, countries, or a region. It is a good starting point to look for
+                    other information in the history of immigration to the United States broken down by country.
+                </p>
+                <div class="settings row text-center">
+                    <div class="col-xs-6">
+                        <h3>Select countries</h3>
+                        <p>Hold <kbd>ctrl</kbd> or <kbd>cmd</kbd> to select multiple countries.</p>
+                        <select name="select" id="select" class="form-control" size="5" multiple>
                         </select>
-                            </div>
-                        </div>
                     </div>
-                    <div id="LC_vis" class="container"></div>
+                </div>
+            </div>
+            <div id="LC_vis" class="container"></div>
     </section>
 
     <!-- Treemap -->
     <section id="tree">
         <div class="container">
             <h2>Why do immigrants from different countries come to the US?</h2>
-
+            <p>
+                 This treemap is based on data from 2015 immigration to the United States. It groups the countries into continents and allows
+                the user to explore the different reasons why people are moving to the United States in what numbers from
+                where and for what reasons.
+            </p>
             <div class="btn-group" data-toggle="buttons" id="why">
                 <label class="btn btn-primary active">
                     <input  value = "Total" type="radio" name="options"class= 'why' autocomplete="off" checked>
