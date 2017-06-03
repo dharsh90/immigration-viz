@@ -26,6 +26,7 @@ h1 {
 
 h2 {
     font-size: 24px;
+    margin-top: 32px;
 }
 
 h3 {
@@ -90,6 +91,16 @@ section#introduction {
 }
 
 #china-image-1 {
+    display: inline-block;
+    max-width:600px;
+    max-height:800px;
+    width: auto;
+    height: auto;
+    margin-top: 42px;
+    margin-bottom: 42px;
+}
+
+#cuba-image-1 {
     display: inline-block;
     max-width:600px;
     max-height:800px;
@@ -247,6 +258,12 @@ path {
 
 #vis-us {
     padding-top: 10px;
+}
+
+.states {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
 }
 /* END US Map CSS */
 

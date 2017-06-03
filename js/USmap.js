@@ -215,6 +215,11 @@ $(function () {
             })
             .attr("d", path);
 
+        svg.append("path")
+            .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+            .attr("class", "states")
+            .attr("d", path);
+
         svg.append("g")
             .attr("class", "legendQuant")
             .attr("transform", "translate(1000,100)");

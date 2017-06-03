@@ -20,6 +20,7 @@ var treemap = function () {
 
     var tip = d3.tip()
         .attr('class', 'd3-tip')
+        .style("z-index", "2")
         .offset([-10, 0])
         .html(function (d) {
             keys = ["Total","Family-sponsored preferences","Employment-based preferences","Immediate relatives of U.S. citizens","Diversity", "Refugees and asylees"]
