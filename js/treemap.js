@@ -16,14 +16,15 @@ var treemap = function () {
         drawHeight = height - margin.top - margin.bottom,
         measure = 'Total'; // variable to visualize
 
+        var nodes;
     // Function returned by treemap
     var chart = function (nestedData) {
 
         // Append a wrapper div for the chart
         var div = d3.select('#treemap')
-            .append("div")
-            .attr('height', height)
-            .attr('width', width)
+            .append("svg")
+            .attr('height', drawHeight)
+            .attr('width', drawWidth)
             .style("left", margin.left + "px")
             .style("top", margin.top + "px");
 
@@ -63,32 +64,52 @@ var treemap = function () {
 
         // Bind your data to a selection of elements with class node
         // The data that you want to join is array of elements returned by `root.leaves()`
-        var nodes = div.selectAll(".node").data(root.leaves());
+        nodes = div.selectAll(".node").data(root.leaves());
 
         // Enter and append elements, then position them using the appropriate *styles*
         nodes.enter()
-            .append("div")
-            .text(function (d) {
-                return d.data.ISO3;
-            })
+            .append("rect")
             .merge(nodes)
             .attr('class', 'node')
-            //.transition().duration(1500)
-            .style("left", function (d, i) {
-                return d.x0 + "px";
+            .attr("x", function (d) {
+                return d.x0;
             })
-            .style("top", function (d) {
-                return d.y0 + "px";
+            .attr("y", function (d) {
+                return d.y0;
             })
-            .style('width', function (d) {
-                return d.x1 - d.x0 + 'px';
+            .attr('width', function (d) {
+                return d.x1 - d.x0;
             })
-            .style("height", function (d) {
-                return d.y1 - d.y0 + "px";
+            .attr("height", function (d) {
+                return d.y1 - d.y0;
             })
-            .style("background", function (d, i) {
+            .attr("fill", function (d) {
                 return colorScale(d.data.Continent);
+            })
+            .attr('stroke', "black");
+            
+            nodes.enter()
+            .append("text")
+            .merge(nodes)
+            .attr('class', 'node-text')
+            .attr("x", function (d, i) {
+                return d.x0 + margin.right+ 3;
+            })
+            .attr("y", function (d) {
+                return d.y0 + margin.left + 3;
+            })
+            .text(function (d) {
+                w = d.x1 - d.x0;
+                h = d.y1 - d.y0;
+                area = w * h;
+                if(area > 2000) {
+                    return d.data.ISO3;
+                } else {
+                    return ""
+                }
             });
+
+        nodes.exit().remove();
     };
 
     // Getter/setter methods 
@@ -136,7 +157,7 @@ $(function () {
         });
 
         $("#why :input").change(function () {
-            d3.selectAll(".node").remove();
+            d3.selectAll("svg").remove();
             tree.measure($(this).val());
             tree(nestedData);
         });
