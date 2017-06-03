@@ -90,6 +90,7 @@ section#introduction {
 }
 
 .china-image {
+    display: inline-block;
     max-width:600px;
     max-height:800px;
     width: auto;

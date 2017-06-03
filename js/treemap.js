@@ -22,8 +22,14 @@ var treemap = function () {
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function (d) {
+            keys = ["Total","Family-sponsored preferences","Employment-based preferences","Immediate relatives of U.S. citizens","Diversity", "Refugees and asylees"]
             return "<strong>Country:</strong> <span style='color:red'>" + d.data.Country + "</span> <br> \
-                    <strong>Total: </strong>" + d.data.Total + " <br>";
+                    <strong>Total: </strong> <span style='color:gray'>" + d.data[(keys[0])] + "</span>  <br> \
+                    <strong>Family Sponsored: </strong> <span style='color:gray'>" + d.data[keys[1]] + "</span>  <br> \
+                    <strong>Employment: </strong> <span style='color:gray'>" + d.data[keys[2]] + "</span>  <br> \
+                    <strong>Relativies in US: </strong> <span style='color:gray'>" + d.data[keys[3]] + "</span>  <br> \
+                    <strong>Diversity: </strong> <span style='color:gray'>" + d.data[keys[4]] + "</span>  <br> \
+                    <strong>Refugees and Asylees: </strong> <span style='color:gray'>" + d.data[keys[5]] + "</span>  <br>";
         })
     // Function returned by treemap
     var chart = function (nestedData) {
