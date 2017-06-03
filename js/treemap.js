@@ -16,7 +16,15 @@ var treemap = function () {
         drawHeight = height - margin.top - margin.bottom,
         measure = 'Total'; // variable to visualize
 
-        var nodes;
+    var nodes;
+
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function (d) {
+            return "<strong>Country:</strong> <span style='color:red'>" + d.data.Country + "</span> <br> \
+                    <strong>Total: </strong>" + d.data.Total + " <br>";
+        })
     // Function returned by treemap
     var chart = function (nestedData) {
 
@@ -28,6 +36,7 @@ var treemap = function () {
             .style("left", margin.left + "px")
             .style("top", margin.top + "px");
 
+        div.call(tip);
         /* ********************************** Create hierarchical data structure & treemap function  ********************************** */
 
         // Define a hierarchy for your data
@@ -86,23 +95,25 @@ var treemap = function () {
             .attr("fill", function (d) {
                 return colorScale(d.data.Continent);
             })
-            .attr('stroke', "black");
-            
-            nodes.enter()
+            .attr('stroke', "black")
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
+
+        nodes.enter()
             .append("text")
             .merge(nodes)
             .attr('class', 'node-text')
             .attr("x", function (d, i) {
-                return d.x0 + margin.right+ 3;
+                return d.x0 + margin.left;
             })
             .attr("y", function (d) {
-                return d.y0 + margin.left + 3;
+                return d.y0 + margin.left + 2;
             })
             .text(function (d) {
                 w = d.x1 - d.x0;
                 h = d.y1 - d.y0;
                 area = w * h;
-                if(area > 2000) {
+                if (area > 2000 && w > 10 && h > 10) {
                     return d.data.ISO3;
                 } else {
                     return ""

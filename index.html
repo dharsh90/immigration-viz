@@ -94,69 +94,102 @@
     <!-- Line chart -->
     <section>
         <div class="container">
-            <div class="settings row text-center">
-                <div class="col-xs-6">
-                    <h3>Select countries</h3>
-                    <p>Hold <kbd>ctrl</kbd> or <kbd>cmd</kbd> to select multiple countries.</p>
-                    <select name="select" id="select" class="form-control" size="5" multiple>
+            <h2>Case study: China</h2>
+            <p>
+                China provides an interesting use case into understanding exactly how much legsilation can effect immigration movements.
+                Leading up to the 1870s you can see that there is a strong influx of immigration from China. This was due
+                to the Chinese coming over to work as laborers on transcontinental railroads such as the Central Pacific
+                Railroad, as well as working as miners. Chinese immigrants faced discrimination at every level and those
+                that felt threatened by the presense of Chinese immigrants dubbed it the "yellow peril".
+
+            </p>
+
+
+
+            <p>
+                Despite efforts for equal treatments many labor unions rallied against Chinese immigration leading to Page Act of 1875 aimed
+                to limit Chinese immigrants and reinofrced a stigma that the Chinese are "dishonest". The Page Act also responded
+                to the perceived idea that was promoted by the American Medical Association that the Chinese brought in ”germs”
+                that were “deadly” to Whites. This led to the 1882 Chinese Exclusion Act which prohibited any immigration
+                from China and is the only law put into effect to discriminate immigration by race. It would be made permenant
+                in 1902 and stay in place till 1943. There would not be large influx of Chinese immigration until Immigration
+                and Nationality Act of 1965 uplifting some restrictive quotas on the amount of immigrants and after President
+                Nixon's famous trip to China in 1972 to normalize relations with China after 25 years of seperation between
+                the U.S. and China.
+            </p>
+
+            <image class="china-image" src="images/china1.jpg">
+                <image class="china-image" src="images/china2.jpg">
+
+                    <div class="container">
+                        <div class="settings row text-center">
+                            <div class="col-xs-6">
+                                <h3>Select countries</h3>
+                                <p>Hold <kbd>ctrl</kbd> or <kbd>cmd</kbd> to select multiple countries.</p>
+                                <select name="select" id="select" class="form-control" size="5" multiple>
                 </select>
-                </div>
-            </div>
-        </div>
-        <div id="LC_vis" class="container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="LC_vis" class="container"></div>
     </section>
 
     <!-- Treemap -->
     <section id="tree">
         <div class="container">
-            <h2>Why do immigrants come to the US?</h2>
+            <h2>Why do immigrants from different countries come to the US?</h2>
 
             <div class="btn-group" data-toggle="buttons" id="why">
                 <label class="btn btn-primary active">
-                    <input  value = "Total" type="radio" name="options" id="option1" class= 'why' autocomplete="off" checked>
+                    <input  value = "Total" type="radio" name="options"class= 'why' autocomplete="off" checked>
                     Total
                 </label>
                 <label class="btn btn-primary">
-                    <input  value = "Family-sponsored preferences" type="radio" name="options" id="option1" class= 'why' autocomplete="off">
+                    <input  value = "Family-sponsored preferences" type="radio" name="options" class= 'why' autocomplete="off">
                     Family preferences
                 </label>
 
                 <label class="btn btn-primary">
-                    <input  value = "Employment-based preferences" type="radio" name="options" id="option1" class= 'why' autocomplete="off">
+                    <input  value = "Employment-based preferences" type="radio" name="options" class= 'why' autocomplete="off">
                     Employment
                 </label>
 
                 <label class="btn btn-primary">
-                    <input  value = "Immediate relatives of U.S. citizens" type="radio" name="options" id="option1" class= 'why' autocomplete="off">
+                    <input  value = "Immediate relatives of U.S. citizens" type="radio" name="options" class= 'why' autocomplete="off">
                     Immediate relatives of U.S. citizens
                 </label>
                 <label class="btn btn-primary">
-                    <input  value = "Diversity" type="radio" name="options" id="option1" class= 'why' autocomplete="off">
+                    <input  value = "Diversity" type="radio" name="options" class= 'why' autocomplete="off">
                     Diversity
                 </label>
 
                 <label class="btn btn-primary">
-                    <input  value = "Refugees and asylees" type="radio" name="options" id="option1" class= 'why' autocomplete="off">
+                    <input  value = "Refugees and asylees" type="radio" name="options" class= 'why' autocomplete="off">
                     Refugees and asylees
                 </label>
 
                 <label class="btn btn-primary">
-                    <input  value = "Other" type="radio" name="options" id="option1" class= 'why' autocomplete="off">
+                    <input  value = "Other" type="radio" name="options" class= 'why' autocomplete="off">
                     Other
                 </label>
             </div>
 
             <div id="treemap" class="container"></div>
+
+            <div id="tooltip" class="hidden">
+                <p><strong>Percentage Value</strong></p>
+                <p><span id="value">100</span>%</p>
+            </div>
         </div>
     </section>
 
 
     <!-- Footer -->
-        <footer>
-            <div class="container">
-                <p>Made by Nick Nordale, Jack Fox, Ishan Saksena, Iman Baghai and Matt McKenna </p>
-            </div>
-        </footer>
+    <footer>
+        <div class="container">
+            <p>Made by Nick Nordale, Jack Fox, Ishan Saksena, Iman Baghai and Matt McKenna </p>
+        </div>
+    </footer>
 
 </body>
 
