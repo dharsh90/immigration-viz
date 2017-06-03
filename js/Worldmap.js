@@ -70,7 +70,7 @@ $(function () {
         var vals = opt.max - opt.min;
 
         for (var i = 1; i <= vals; i++) {
-            var el = $('<label id = "tick-label">' + years[i] + '</label>').css('left', (i / vals * 100) + '%');
+            var el = $('<label>' + years[i] + '</label>').css('left', (i / vals * 100) + '%');
             $("#slider").append(el);
         }
     });
@@ -123,7 +123,7 @@ $(function () {
             /* ****** Create colorscale ****** */
             var color = d3.scaleThreshold()
                 .domain(d3.range(min, max, ((max - min) / 5)))
-                .range(d3.schemeRdBu[5]);
+                .range(d3.schemeSpectral[5]);
 
             /* ****** Data bind ****** */ 
             var countries = topojson.feature(data, data.objects.countries).features
@@ -149,6 +149,35 @@ $(function () {
                     }
                 })
             // paths.exit().remove()
+            
+            /* ****** Text ****** */
+
+            var header = d3.select("#vis-world")
+                .append("text")
+
+            var headers = header.selectAll("text").data()
+
+            headers.enter()
+                .append("text")
+                .merge(headers)
+                .transition()
+                .duration(800)
+                .attr("class", "year_header" )
+                .attr("x", (width / 2))             
+                .attr("y", 0 - (margin.top / 2))
+                .attr("text-anchor", "middle")  
+                .style("font-size", "16px") 
+                .text(year)
+            
+            headers.exit().remove()
+
+            // d3.select("#vis-world").append("text")
+            //     .attr("class", "year_header" )
+            //     .attr("x", (width / 2))             
+            //     .attr("y", 0 - (margin.top / 2))
+            //     .attr("text-anchor", "middle")  
+            //     .style("font-size", "16px") 
+            //     .text(year)
 
             /* ****** Legend ****** */ 
              svg.append("g")
