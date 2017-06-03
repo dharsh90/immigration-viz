@@ -89,6 +89,24 @@ section#introduction {
     margin-top: 10px;
 }
 
+#china-image-1 {
+    display: inline-block;
+    max-width:600px;
+    max-height:800px;
+    width: auto;
+    height: auto;
+    margin-top: 42px;
+    margin-bottom: 42px;
+}
+
+#china-image-2 {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 42px;
+    margin-top: 42px;
+}
+
 /* Footer */
 
 footer {
@@ -195,6 +213,11 @@ path {
 .btn-group {
     margin-bottom: 20px;
 }
+
+.node:hover {
+      fill: orange;
+    }
+    
 /* US Map CSS */
 #svg-filter {
     padding: 0;
@@ -226,4 +249,13 @@ path {
     padding-top: 10px;
 }
 /* END US Map CSS */
+
+#slider label {
+  position: absolute;
+  width: 20px;
+  margin-top: 20px;
+  margin-left: -10px; 
+  text-align: center;
+
+}
 
